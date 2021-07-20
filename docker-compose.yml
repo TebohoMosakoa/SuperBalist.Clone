@@ -1,0 +1,57 @@
+version: '3.4'
+
+services:
+  Superbalist:
+    image: postgres
+
+  basketdb:
+    image: redis:alpine
+
+  orderdb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  portainer:
+    image: portainer/portainer-ce
+
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/Catalog.Api/Dockerfile
+
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: src/Services/Discount/Discount.Api/Dockerfile
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: src/Services/Basket/Basket.Api/Dockerfile
+
+  promotion.api:
+    image: ${DOCKER_REGISTRY-}promotionapi
+    build:
+      context: .
+      dockerfile: src/Services/Promotion/Promotion.Api/Dockerfile
+
+  order.api:
+    image: ${DOCKER_REGISTRY-}orderapi
+    build:
+      context: .
+      dockerfile: src/Services/Order/Order.Api/Dockerfile
+
+volumes:
+  portainer_data:
+  postgres_data:
+  pgadmin_data:
+
+

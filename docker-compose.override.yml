@@ -1,0 +1,111 @@
+version: '3.4'
+
+services:
+  
+  Superbalist:
+    container_name: Superbalist
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=CatalogDb
+      - POSTGRES_DB=DiscountDb
+      - POSTGRES_DB=PromotionsDb
+    restart: always
+    ports:
+        - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+      - "6379:6379"
+
+  orderdb:
+    container_name: orderdb
+    environment:
+        SA_PASSWORD: "#@TebohoMosakoa12345"
+        ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+        - "1433:1433"
+
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=mosakoateboho@gmail.com.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+        - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  catalog.api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=Superbalist;Port=5432;Database=CatalogDb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - Superbalist
+    ports:
+      - "8001:80"
+
+  discount.api:
+    container_name: discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=Superbalist;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+    depends_on: 
+      - Superbalist
+    ports:
+      - "8002:80"
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=basketdb:6379"
+    depends_on:
+      - basketdb
+    ports:
+      - "8003:80"
+
+  promotion.api:
+    container_name: promotion.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=Superbalist;Port=5432;Database=PromotionsDb;User Id=admin;Password=admin1234;"
+    depends_on:
+     - Superbalist
+    ports:
+      - "8004:80"
+
+  order.api:
+    container_name: order.api
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=#@TebohoMosakoa12345" 
+    depends_on:
+        - orderdb
+    ports:
+      - "8005:80"
+
