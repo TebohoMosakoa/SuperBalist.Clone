@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Basket.Api.GrpcServices;
 using Basket.Api.Models;
 using Basket.Api.Repositories;
 using EventBus.Messages.Events;
@@ -15,14 +16,16 @@ namespace Basket.Api.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _repository;
-        //private readonly DiscountGrpcService _discountGrpcService;
+        private readonly DiscountGrpcService _discountGrpcService;
+        private readonly PromotionGrpcService _promotionGrpcService;
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly IMapper _mapper;
 
-        public BasketController(IBasketRepository repository, IMapper mapper, IPublishEndpoint publishEndpoint)
+        public BasketController(IBasketRepository repository, DiscountGrpcService discountGrpcService, PromotionGrpcService promotionGrpcService, IMapper mapper, IPublishEndpoint publishEndpoint)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            //_discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
+            _discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
+            _promotionGrpcService = promotionGrpcService ?? throw new ArgumentNullException(nameof(promotionGrpcService));
             _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
@@ -60,13 +63,20 @@ namespace Basket.Api.Controllers
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
-            // Communicate with Discount.Grpc and calculate lastest prices of products into sc
-            //foreach (var item in basket.Items)
-            //{
-            //    var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-            //    item.Price -= coupon.Amount;
-            //}
+            // Communicate with PRomotion.Grpc and calculate prices of products after promotion % is removed
+            foreach (var item in basket.Items)
+            {
+                var promotion = await _promotionGrpcService.GetPromotion(item.ProductId);
+                if (promotion.IsActive && promotion != null)
+                {
+                    item.Price -= ((item.Price * promotion.Percentage) / 100);
+                }
 
+            }
+            // Communicate with Discount.Grpc and calculate lastest prices of products into sc
+            var coupon = await _discountGrpcService.GetDiscount(basket.UserName);
+            basket.TotalPrice -= coupon.Amount;
+            
             return Ok(await _repository.UpdateBasket(basket));
         }
 

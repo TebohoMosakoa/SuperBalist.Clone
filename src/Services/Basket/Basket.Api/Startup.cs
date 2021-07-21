@@ -1,4 +1,6 @@
+using Basket.Api.GrpcServices;
 using Basket.Api.Repositories;
+using Discount.Grpc.Protos;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Promotion.GRPC.Protos;
+using System;
 
 namespace Basket.Api
 {
@@ -29,6 +33,15 @@ namespace Basket.Api
 
             // General Configuration
             services.AddScoped<IBasketRepository, BasketRepository>();
+
+            //GRPC Configurations
+            services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
+                (o => o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]));
+            services.AddScoped<DiscountGrpcService>();
+
+            services.AddGrpcClient<PromotionProtoService.PromotionProtoServiceClient>
+                (o => o.Address = new Uri(Configuration["GrpcSettings:PromotionsUrl"]));
+            services.AddScoped<PromotionGrpcService>();
 
             //AutoMapper Configuration
             services.AddAutoMapper(typeof(Startup));

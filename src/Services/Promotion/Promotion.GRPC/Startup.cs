@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Promotion.GRPC.Data;
 using Promotion.GRPC.Repositories;
+using Promotion.GRPC.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Promotion.GRPC
             services.AddDbContext<PromotionContext>(options =>
                 options.UseNpgsql(Configuration.GetValue<string>("DatabaseSettings:ConnectionString")));
             services.AddScoped<IPromotionRepository, PromotionRepository>();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +46,7 @@ namespace Promotion.GRPC
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<PromotionService>();
 
                 endpoints.MapGet("/", async context =>
                 {

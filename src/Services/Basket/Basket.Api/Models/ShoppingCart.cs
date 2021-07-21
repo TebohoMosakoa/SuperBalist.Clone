@@ -30,6 +30,11 @@ namespace Basket.Api.Models
                 }
                 return totalprice;
             }
+            set 
+            {
+                if (value > 0)
+                    TotalPrice = value;
+            }
         }
     }
 }

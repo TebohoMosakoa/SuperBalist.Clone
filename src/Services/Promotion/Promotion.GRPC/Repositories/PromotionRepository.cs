@@ -16,57 +16,20 @@ namespace Promotion.GRPC.Repositories
         {
             _context = context;
         }
-        public async Task<bool> CreatePromo(Promo promo)
-        {
-            try
-            {
-                await _context.Promotions.AddAsync(promo);
-                return true;
-            }
-            catch
-            {
-                throw;
-            }
-        }
 
-        public async Task<bool> DeletePromo(int id)
+        public Promo GetPromo(int id)
         {
-            try
+            foreach (var promo in _context.Promotions)
             {
-                var promo = await _context.Promotions.FindAsync(id);
-                _context.Promotions.Remove(promo);
-                return true;
-            }
-            catch
-            {
-                throw;
-            }
-        }
+                foreach (var item in promo.Items)
+                {
+                    if (item.ProductId == id)
+                        return promo;
+                }
 
-        public async Task<Promo> GetPromo(int id)
-        {
-            return await _context.Promotions.FindAsync(id);
-        }
-
-        public async Task<List<Promo>> GetPromos(bool isActive)
-        {
-            return await _context.Promotions.Where(i => i.IsActive == isActive).ToListAsync();
-        }
-
-        public async Task<bool> UpdatePromo(Promo promo)
-        {
-            try
-            {
-                _context.Entry(promo).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-                return true;
             }
-            catch (Exception)
-            {
+            return null;
 
-                throw;
-            }
-            
         }
     }
 }

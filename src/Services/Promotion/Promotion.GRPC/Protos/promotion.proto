@@ -1,19 +1,16 @@
 syntax = "proto3";
 
 option csharp_namespace = "Promotion.GRPC.Protos";
+
 import "google/protobuf/timestamp.proto";
 
-service DiscountProtoService {
+service PromotionProtoService {
 
-	rpc GetPromotion (GetPromotionRequest) returns (PromotionModel);
-	rpc GetPromotions (GetPromotionsFilterRequest) returns (PromotionModels);
-	rpc CreatePromotion (CreatePromotionRequest) returns (PromotionModel);
-	rpc UpdatePromotion (UpdatePromotionRequest) returns (PromotionModel);
-	rpc DeletePromotion (DeletePromotionRequest) returns (DeletePromotionResponse);	  
+	rpc GetProductPromotion (GetProductPromotionRequest) returns (PromotionModel); 
 }
 
-message GetPromotionRequest {
-	string id = 1;
+message GetProductPromotionRequest {
+	int32 ProductId = 1;
 }
 
 message PromotionModel {
@@ -33,28 +30,4 @@ message ItemModel {
     string ProductName = 3;
     double Price = 4;
 	string ProductImage = 5;
-}
-
-message GetPromotionsFilterRequest {
-	bool IsActive = 1;
-}
-
-message PromotionModels {
-	repeated PromotionModel Promotions = 1;
-}
-
-message CreatePromotionRequest {
-	PromotionModel promo = 1;
-}
-
-message UpdatePromotionRequest { 
-	PromotionModel promo = 1;
-}
-
-message DeletePromotionRequest {
-	int32 Id = 1;
-}
-
-message DeletePromotionResponse {
-	bool success = 1;
 }

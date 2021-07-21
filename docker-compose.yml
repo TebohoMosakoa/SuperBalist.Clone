@@ -49,9 +49,23 @@ services:
       context: .
       dockerfile: src/Services/Order/Order.Api/Dockerfile
 
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: src/Services/Discount/Discount.Grpc/Dockerfile
+
+  promotion.grpc:
+    image: ${DOCKER_REGISTRY-}promotiongrpc
+    build:
+      context: .
+      dockerfile: src/Services/Promotion/Promotion.GRPC/Dockerfile
+
 volumes:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
+
 
 

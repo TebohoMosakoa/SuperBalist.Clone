@@ -84,6 +84,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=basketdb:6379"
+      - "GrpcSettings:DiscountUrl=http://discount.grpc"
+      - "GrpcSettings:PromotionsUrl=http://promotion.grpc"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - basketdb
@@ -112,4 +114,25 @@ services:
         - rabbitmq
     ports:
       - "8005:80"
+
+
+  discount.grpc:
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=Superbalist;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+    depends_on: 
+      - Superbalist
+    ports:
+      - "8006:80"
+
+  promotion.grpc:
+    container_name: promotion.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=Superbalist;Port=5432;Database=PromotionsDb;User Id=admin;Password=admin1234;"
+    depends_on:
+     - Superbalist
+    ports:
+      - "80"
 
