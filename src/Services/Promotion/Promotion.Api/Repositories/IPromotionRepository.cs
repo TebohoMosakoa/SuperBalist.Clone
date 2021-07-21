@@ -6,7 +6,7 @@ namespace Promotion.Api.Repositories
 {
     public interface IPromotionRepository
     {
-        Task<List<Promo>> GetPromos();
+        Task<List<Promo>> GetPromos(bool isActive);
         Task<Promo> GetPromo(int id);
         Task<bool> CreatePromo(Promo promo);
         Task<bool> UpdatePromo(Promo promo);

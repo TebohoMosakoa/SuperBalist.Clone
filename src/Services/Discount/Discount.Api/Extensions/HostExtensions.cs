@@ -61,13 +61,13 @@ namespace Discount.API.Extensions
             command.ExecuteNonQuery();
 
             command.CommandText = @"CREATE TABLE Coupon(Id SERIAL PRIMARY KEY, 
-                                                                ProductName VARCHAR(24) NOT NULL,
+                                                                UserName VARCHAR(24) NOT NULL,
                                                                 Description TEXT,
                                                                 Amount INT)";
             command.ExecuteNonQuery();
 
 
-            command.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Air force 1', 'Air force Discount', 250);";
+            command.CommandText = "INSERT INTO Coupon(UserName, Description, Amount) VALUES('admin', 'First Purchase', 250);";
             command.ExecuteNonQuery();
         }        
     }

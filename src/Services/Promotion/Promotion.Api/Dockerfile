@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["src/Services/Promotion/Promotion.Api/Promotion.Api.csproj", "src/Services/Promotion/Promotion.Api/"]
+COPY ["src/Commnication/EventBus.Messages/EventBus.Messages.csproj", "src/Commnication/EventBus.Messages/"]
 RUN dotnet restore "src/Services/Promotion/Promotion.Api/Promotion.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Promotion/Promotion.Api"

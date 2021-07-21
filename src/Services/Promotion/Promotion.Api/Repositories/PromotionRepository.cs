@@ -4,6 +4,7 @@ using Promotion.Api.Data;
 using Promotion.Api.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Promotion.Api.Repositories
@@ -47,9 +48,9 @@ namespace Promotion.Api.Repositories
             return await _context.Promotions.FindAsync(id);
         }
 
-        public async Task<List<Promo>> GetPromos()
+        public async Task<List<Promo>> GetPromos(bool isActive)
         {
-            return await _context.Promotions.ToListAsync();
+            return await _context.Promotions.Where(i => i.IsActive == isActive).ToListAsync();
         }
 
         public async Task<bool> UpdatePromo(Promo promo)

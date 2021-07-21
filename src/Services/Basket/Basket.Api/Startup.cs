@@ -1,4 +1,5 @@
 using Basket.Api.Repositories;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,19 @@ namespace Basket.Api
 
             // General Configuration
             services.AddScoped<IBasketRepository, BasketRepository>();
+
+            //AutoMapper Configuration
+            services.AddAutoMapper(typeof(Startup));
+
+            //Mass Transit Rabbit-MQ Configuration
+            services.AddMassTransit(c =>
+            {
+                c.UsingRabbitMq((context, config) =>
+                {
+                    config.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+            services.AddMassTransitHostedService();
 
             services.AddControllers();
 

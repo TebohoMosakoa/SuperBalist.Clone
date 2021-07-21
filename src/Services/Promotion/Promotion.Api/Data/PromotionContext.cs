@@ -9,7 +9,7 @@ namespace Promotion.Api.Data
         {
 
         }
-
+        public DbSet<Item> Items { get; set; }
         public DbSet<Promo> Promotions { get; set; }
     }
 }

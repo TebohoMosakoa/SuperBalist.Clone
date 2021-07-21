@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Promotion.Api.Models
 {
@@ -13,6 +11,7 @@ namespace Promotion.Api.Models
         public DateTime From { get; set; }
         public int Percentage { get; set; }
         public int Duration { get; set; }
+        public bool IsActive { get; set; }
 
         public List<Item> Items { get; set; } = new List<Item>();
         public Promo()

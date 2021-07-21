@@ -18,10 +18,11 @@ namespace Promotion.Api.Controllers
             _repository = repository;
         }
 
+        [Route("[action]")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Promo>>> Get()
+        public async Task<ActionResult<IEnumerable<Promo>>> GetAll(bool isActive)
         {
-            return await _repository.GetPromos();
+            return await _repository.GetPromos(isActive);
         }
 
         // GET: api/[controller]/5
