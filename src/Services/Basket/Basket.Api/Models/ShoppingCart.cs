@@ -19,21 +19,21 @@ namespace Basket.Api.Models
             UserName = userName;
         }
 
+        private double _total;
         public double TotalPrice
         {
             get
             {
-                double totalprice = 0;
                 foreach (var item in Items)
                 {
-                    totalprice += item.Price * item.Quantity;
+                    _total += item.Price * item.Quantity;
                 }
-                return totalprice;
+                return _total;
             }
             set 
             {
                 if (value > 0)
-                    TotalPrice = value;
+                    _total = value;
             }
         }
     }
