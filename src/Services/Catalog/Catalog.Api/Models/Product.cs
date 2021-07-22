@@ -10,8 +10,10 @@ namespace Catalog.Api.Models
     public class Product : EntityBase
     {
         public double Price { get; set; }
-
-        public string Image { get; set; }
+        public string Description { get; set; }
+        public string Size { get; set; }
+        public string Materials { get; set; }
+        public string Dimensions { get; set; }
         public int BrandId { get; set; }
         [ForeignKey("BrandId")]
         public Brand Brand { get; set; }

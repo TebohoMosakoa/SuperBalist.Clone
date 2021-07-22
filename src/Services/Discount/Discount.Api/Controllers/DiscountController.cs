@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Discount.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class DiscountController : ControllerBase
     {
         private readonly IDiscountRepository _repository;
@@ -19,7 +19,7 @@ namespace Discount.API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [HttpGet("{productName}", Name = "GetDiscount")]
+        [HttpGet("{userName}", Name = "GetDiscount")]
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Coupon>> GetDiscount(string userName)
         {
@@ -35,12 +35,6 @@ namespace Discount.API.Controllers
             return CreatedAtRoute("GetDiscount", new { productName = coupon.UserName }, coupon);
         }
 
-        //[HttpPut]
-        //[ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-        //public async Task<ActionResult<Coupon>> UpdateBasket([FromBody] Coupon coupon)
-        //{
-        //    return Ok(await _repository.UpdateDiscount(coupon));
-        //}
 
         //[HttpDelete("{productName}", Name = "DeleteDiscount")]
         //[ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]

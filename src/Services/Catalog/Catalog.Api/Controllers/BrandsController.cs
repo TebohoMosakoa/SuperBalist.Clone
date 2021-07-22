@@ -1,5 +1,6 @@
 ﻿using Catalog.Api.Models;
 using Catalog.Api.Repositories;
+using Catalog.Api.Repositories.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Api.Controllers
@@ -8,7 +9,7 @@ namespace Catalog.Api.Controllers
     [ApiController]
     public class BrandsController : BaseController<Brand, BrandRepository>
     {
-        public BrandsController(BrandRepository repository) : base(repository)
+        public BrandsController(BrandRepository repository, ICloudStorage cloudStorage) : base(repository, cloudStorage)
         {
 
         }

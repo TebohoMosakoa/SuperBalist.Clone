@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "superbalist",
+  "private_key_id": "1232d5a37b51eedcbec6d50935d6c424e3904a13",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDVoTk+/Lm5KPcT\nEa60049z2QFC6/N8mj7axROSR872ngFFa8/nRbi00UgoXQIWVaCCpZ4wvFptuZ8W\nbBkIUfwjC7Slx4OQXDpkzgOJKRikwvzFqGP28bhii4pMt5/x+c74guZk2fNwKWmV\nDyMK/PKctHU2vmvWlLp9kZbOP9A9Akah7cHoc2j2vNzLPzAH3fvHS4KZheGQeFhg\ngRZCocc9YAmlVXGH9eOiKnyhgf2q83K1asLFm2mict359tJr05f/RhLWKQZqmEfw\nePMn3UtO69vm8ku52lLTUz6CyDBI7sI7jueenzJ38v95+3qJmIffOfBEKgJiJgx6\n5E4upsv5AgMBAAECggEAZSf0+/LenKMdr21hjSVaWZBJbR9eCcPd/GhyVoNjKFr0\nHiOpbAkTJ6ero9U6rkm4efSjXc9qgGdzQcJI7iwoGI4r6Y36KcrKKb51ZSbNEQN1\nfsC4KRAXb65EfAQ9G+7ehsUxBFNB1vv9D0R+Iu9YkERQ9m2fkZmWXuwn/RyxZZlH\nS/jSTQ9JNEEmZ8rA3GSQ+tnwwyE+a87Mqh+Fv/etybS1rbmIUV0HIm8hpsgdOrXj\nLNjLW7AUEqt0ymHudSek+8tjB5+ST8ZccK4q8gjaC4/uz89SrDPtS2CZuIPf/0Yv\n9MEd8Ka2Ofa53meIRe29KVyQ+QKiPl+IJZuXRVoLMwKBgQDtCvCCKGNnqeaWxbdj\nlVd8E/SlLXhBLuBY54lCgWDpVYxDoNEkThDB1iKYzoypphp0U1H6av9KMFQf+4Ln\nB21K8Hn4kQ/4ZCQZSQtMwa4XgR7lW5kq+5DDjB+PbxVA3yuU1mqyYHEVL2BJmy1X\nWWODhgOG5MvmQ+NM1+5Ywf9zwwKBgQDmtvFAiw0R+unLYMWV4nAEHu/mHtncaWut\nnT09Ig14iabkvS+9nOjxefJqfxnOmTREI2jlKCxnKPfYs+jFCSshhJRSTuBwiGKE\numOCq1UpUMOxFyqY4zko7NSVdRpoU+VT+EcE12MUrYrOA+qBd5KcKFQpDinigzG2\nn3gkywUxkwKBgQC1zDkPKhirDaQ7KGJxLr2M/OUZtdjP7TrFFLax2fZQnnrX90PP\nm0vAzhF0rp01E56gbrKl41/uL0ilysjnlUueOPbiy6a681q4RcwzzytM/YuLjofX\nbl7litc9s41SVpbfLN9h9RNlkxM/AJNytazb13FnCJzU+mYerlEvo4He7wKBgE4+\naN8syUf5wmRY82l7m+Wp4E441EXt8ri0hNpAvDTO6izVBGXX2yBZ7R608Dmit5kM\nMTzWPQjXWgbCLQT1sQzy+6JWYcOIXXEKDUl5da5HV7atVqL3HKGGgCoXxtbu7O1n\nXB6GNXID0PlBVryFotEW1EQAK7BIMgnvVz2TJLXFAoGAVgZlspwkYzkagXUPhqD1\nN700dKeQuH8+8tdqUFXSUIFR5QTxYKJB/a3jgs51XB3z40Fc9BjAcrskKgdKbHmq\nxP5ICe04ZhivHrpp3HDwKDBTi14iDQAJGapvbTxqk34ebQj9V4lQEDoiAoj+Kks2\nKclXqVnek4qimORkY3oXWzw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "superbalist-clone@superbalist.iam.gserviceaccount.com",
+  "client_id": "104006114100709886108",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/superbalist-clone%40superbalist.iam.gserviceaccount.com"
+}

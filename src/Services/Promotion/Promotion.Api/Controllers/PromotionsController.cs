@@ -17,8 +17,7 @@ namespace Promotion.Api.Controllers
         {
             _repository = repository;
         }
-
-        [Route("[action]")]
+        [Route("[action]/{isActive}", Name = "GetAll")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Promo>>> GetAll(bool isActive)
         {

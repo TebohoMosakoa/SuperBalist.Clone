@@ -1,5 +1,6 @@
 ﻿using Catalog.Api.Models;
 using Catalog.Api.Repositories;
+using Catalog.Api.Repositories.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Catalog.Api.Controllers
     {
         private readonly ProductRepository _repository;
         private readonly ILogger<ProductsController> _logger;
-        public ProductsController(ProductRepository repository, ILogger<ProductsController> logger) : base(repository)
+        public ProductsController(ProductRepository repository, ILogger<ProductsController> logger, ICloudStorage cloudStorage) : base(repository, cloudStorage)
         {
             _repository = repository;
             _logger = logger;

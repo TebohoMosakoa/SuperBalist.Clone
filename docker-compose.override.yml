@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=CatalogDb
       - POSTGRES_DB=DiscountDb
       - POSTGRES_DB=PromotionsDb
+      - POSTGRES_DB=UserDb
     restart: always
     ports:
         - "5432:5432"
@@ -115,7 +116,6 @@ services:
     ports:
       - "8005:80"
 
-
   discount.grpc:
     container_name: discount.grpc
     environment:
@@ -134,5 +134,43 @@ services:
     depends_on:
      - Superbalist
     ports:
-      - "80"
+      - "8007:80"
+
+  user.api:
+    container_name: user.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=Superbalist;Port=5432;Database=UserDb;User Id=admin;Password=admin1234;"
+    depends_on:
+     - Superbalist
+    ports:
+      - "8008:80"
+
+  ocelotgateway:
+    container_name: ocelotgateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - catalog.api
+      - discount.api
+      - basket.api
+      - promotion.api
+      - user.api
+      - order.api
+    ports:
+      - "8000:80"
+
+  aggregator:
+    container_name: aggregator
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings:CatalogUrl=http://catalog.api"
+      - "ApiSettings:BasketUrl=http://basket.api"
+      - "ApiSettings:OrderingUrl=http://order.api"
+    depends_on:
+        - catalog.api
+        - basket.api
+        - order.api
+    ports:
+      - "8009:80"
 

@@ -61,10 +61,31 @@ services:
       context: .
       dockerfile: src/Services/Promotion/Promotion.GRPC/Dockerfile
 
+  ocelotgateway:
+    image: ${DOCKER_REGISTRY-}ocelotgateway
+    build:
+      context: .
+      dockerfile: src/Gateway/OcelotGateway/Dockerfile
+
+  user.api:
+    image: ${DOCKER_REGISTRY-}userapi
+    build:
+      context: .
+      dockerfile: src/Services/User/User.Api/Dockerfile
+
+  aggregator:
+    image: ${DOCKER_REGISTRY-}aggregator
+    build:
+      context: .
+      dockerfile: src/Gateway/Aggregator/Dockerfile
+
 volumes:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
+
+
 
 
 
