@@ -1,0 +1,55 @@
+<body class="text-center">
+
+    <main class="form-signin">
+        <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
+            <h1 class="h3 mb-3 fw-normal">Welcome to Superbalist Clone</h1>
+            <hr>
+            <h2 class="h3 mb-3 fw-normal">Register</h2>
+
+            <div class="form-floating">
+                <input type="text" id="firstName" formControlName="firstName" class="form-control"
+                    placeholder="First Name" required>
+                <label for="firstName">First Name</label>
+            </div>
+            <em *ngIf="validateControl('firstName') && hasError('firstName', 'required')"
+                style="color: red; font-weight: bold;">Name is required</em>
+            <div class="form-floating">
+                <input type="test" class="form-control" id="lastName" formControlName="lastName" placeholder="Last Name" required>
+                <label for="lastName">Last Name</label>
+            </div>
+            <em *ngIf="validateControl('lastName') && hasError('lastName', 'required')"
+                style="color: red; font-weight: bold;">Last name is required</em>
+            <div class="form-floating">
+                <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email address"
+                    required>
+                <label for="email">Email address</label>
+            </div>
+            <em *ngIf="validateControl('email') && hasError('email', 'email')" style="color: red; font-weight: bold;">Please provide a valid email</em>
+            <em *ngIf="validateControl('email') && hasError('email', 'required')" style="color: red; font-weight: bold;">Email is required</em>
+            <div class="form-floating">
+                <input type="password" id="password" formControlName="password" class="form-control"
+                    placeholder="Password" required>
+                <label for="Password">Password</label>
+            </div>
+            <em *ngIf="validateControl('password') && hasError('password', 'required')"
+                style="color: red; font-weight: bold;">Password is required</em>
+            <div class="form-floating">
+                <input type="password" id="confirm" formControlName="confirm" class="form-control"
+                    placeholder="Password" required>
+                <label for="confirm"> Confirm Password</label>
+            </div>
+            <em *ngIf="validateControl('confirm') && hasError('confirm', 'required')"
+                style="color: red; font-weight: bold;">Please Confirm Password</em>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit"
+                [disabled]="!registerForm.valid">Register</button>
+        </form>
+    </main>
+
+
+
+</body>

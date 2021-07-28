@@ -19,26 +19,17 @@ namespace Catalog.Api.Models
         //Main image
         [DataType(DataType.ImageUrl)]
         public string? MainImageUrl { get; set; }
-        [NotMapped]
-        public virtual IFormFile MainImageFile { get; set; }
-        public string? MainImageStorageName { get; set; }
         //End of Main Image
 
         //Second Image
         [DataType(DataType.ImageUrl)]
         public string? Image2Url { get; set; }
-        [NotMapped]
-        public virtual IFormFile Image2File { get; set; }
-        public string? Image2StorageName { get; set; }
 
         //End of Second Image
 
         //Third Image
         [DataType(DataType.ImageUrl)]
         public string? Image3Url { get; set; }
-        [NotMapped]
-        public virtual IFormFile Image3File { get; set; }
-        public string? Image3StorageName { get; set; }
 
         //End of Second Image
 

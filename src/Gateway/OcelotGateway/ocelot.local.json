@@ -1,5 +1,5 @@
 {
-  "Routes": [
+  "ReRoutes": [
     //Catalog API
     //Products
     {
@@ -12,8 +12,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Products",
-      "UpstreamHttpMethod": [ "GET", "POST" ],
-      "FileCacheOptions": { "TtlSeconds": 30 }
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Products/{id}",
@@ -86,8 +85,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Categories",
-      "UpstreamHttpMethod": [ "GET", "POST" ],
-      "FileCacheOptions": { "TtlSeconds": 30 }
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Categories/{id}",
@@ -112,8 +110,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Brands",
-      "UpstreamHttpMethod": [ "GET", "POST" ],
-      "FileCacheOptions": { "TtlSeconds": 30 }
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Brands/{id}",
@@ -138,8 +135,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Departments",
-      "UpstreamHttpMethod": [ "GET", "POST" ],
-      "FileCacheOptions": { "TtlSeconds": 30 }
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Departments/{id}",
@@ -236,8 +232,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Promotions",
-      "UpstreamHttpMethod": [ "POST" ],
-      "FileCacheOptions": { "TtlSeconds": 30 }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Promotions/{id}",
@@ -276,8 +271,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Users",
-      "UpstreamHttpMethod": [ "GET", "POST" ],
-      "FileCacheOptions": { "TtlSeconds": 30 }
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Users/{id}",
@@ -345,6 +339,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000"
+    "BaseUrl": "http://localhost:8000"
   }
 }

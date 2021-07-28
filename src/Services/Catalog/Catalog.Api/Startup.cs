@@ -1,7 +1,5 @@
 using Catalog.Api.Data;
 using Catalog.Api.Repositories;
-using Catalog.Api.Repositories.Shared;
-using Catalog.Api.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,8 +27,6 @@ namespace Catalog.Api
             services.AddDbContext<CatalogContext>(options =>
                 options.UseNpgsql(Configuration.GetValue<string>("DatabaseSettings:ConnectionString")));
             //services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-
-            services.AddSingleton<ICloudStorage, CloudStorage>();
 
             services.AddScoped<DepartmentRepository>();
             services.AddScoped<BrandRepository>();

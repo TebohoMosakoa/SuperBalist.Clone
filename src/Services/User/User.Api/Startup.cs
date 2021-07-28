@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using User.Api.Data;
 using User.Api.Models;
+using User.Api.Repositories;
 
 namespace User.Api
 {
@@ -34,6 +35,7 @@ namespace User.Api
                 options.UseNpgsql(Configuration.GetValue<string>("DatabaseSettings:ConnectionString")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<UserContext>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

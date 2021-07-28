@@ -158,7 +158,7 @@ services:
       - user.api
       - order.api
     ports:
-      - "8000:80"
+      - "8010:80"
 
   aggregator:
     container_name: aggregator
